@@ -26,11 +26,14 @@ def difficult_function():
 
 
 @app.route('/')
-def hello():
-    count = redis.incr('hits')
-    computation_time = difficult_function()
-    return 'Hello There! I have been seen {} times. I have solved the problem in {} seconds.\n'.format(count,
-                                                                                                       computation_time)
+# def hello():
+#     count = redis.incr('hits')
+#     computation_time = difficult_function()
+#     return 'Hello There! I have been seen {} times. I have solved the problem in {} seconds.\n'.format(count,
+#                                                                                                        computation_time)
+def responses():
+    responseTime = redis.lrange("responseTimeList", 0, -1)
+    return 'Hello! responseTimeList len: {}'.format(len(responseTimeList))
 
 
 if __name__ == "__main__":
